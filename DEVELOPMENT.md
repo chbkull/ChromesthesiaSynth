@@ -23,3 +23,8 @@ Turns out that OpenFrameworks has an ofImage class that can be used to load an i
 After sending in a basic 16x16 image (a minecraft item texture), I am able to correctly grab the brightness of each pixel after following the example in OpenFrameworks.
 
 Mapped the brightness to a 10 note scale via brightness mod 10, the image now plays sound. It isn't extremely musical, but it is a start.
+
+## 4/13
+Found that the [Synthesis Toolkit](https://ccrma.stanford.edu/software/stk/index.html) has an official [open frameworks plugin](https://github.com/Ahbee/ofxStk). Going to see if I can get it to work.
+
+After messing around with it for about a half hour, unable to get it to compile. I'll try to play with it a bit more, if not I am going to explore other sound libraries on open frameworks and see if I can get any others to work.
