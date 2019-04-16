@@ -28,3 +28,8 @@ Mapped the brightness to a 10 note scale via brightness mod 10, the image now pl
 Found that the [Synthesis Toolkit](https://ccrma.stanford.edu/software/stk/index.html) has an official [open frameworks plugin](https://github.com/Ahbee/ofxStk). Going to see if I can get it to work.
 
 After messing around with it for about a half hour, unable to get it to compile. I'll try to play with it a bit more, if not I am going to explore other sound libraries on open frameworks and see if I can get any others to work.
+
+## 4/15
+Moved back to the base STK library. Want to see if I can get anything resembling music to play.
+
+Update: Was successfully able to get an electric guitar from the examples compiled and playing. Going to see if I can make my own example now.
