@@ -37,3 +37,6 @@ Moved back to the base STK library. Want to see if I can get anything resembling
 Update: Was successfully able to get an electric guitar from the examples compiled and playing. Going to see if I can make my own example now.
 
 Also tested the electric guitar program with a midi keyboard, and was also able to get that to play.
+
+## 4/16
+After a lot of Googling around and struggling with STK, I was finally able to accomplish the equivalent of Hello World (in this case, Hello Sine) using the raw STK library. The next thing to figure out is live playback. If I can accomplish that, then I can finally start moving putting actual code into this repository and get something basic up and running.
