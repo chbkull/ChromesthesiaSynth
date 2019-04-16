@@ -35,3 +35,5 @@ At least for the example demos, the culprit seems to be that the projects were m
 Moved back to the base STK library. Want to see if I can get anything resembling music to play.
 
 Update: Was successfully able to get an electric guitar from the examples compiled and playing. Going to see if I can make my own example now.
+
+Also tested the electric guitar program with a midi keyboard, and was also able to get that to play.
