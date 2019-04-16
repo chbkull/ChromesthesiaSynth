@@ -29,6 +29,8 @@ Found that the [Synthesis Toolkit](https://ccrma.stanford.edu/software/stk/index
 
 After messing around with it for about a half hour, unable to get it to compile. I'll try to play with it a bit more, if not I am going to explore other sound libraries on open frameworks and see if I can get any others to work.
 
+At least for the example demos, the culprit seems to be that the projects were made for XCode, and not for VS2017.
+
 ## 4/15
 Moved back to the base STK library. Want to see if I can get anything resembling music to play.
 
