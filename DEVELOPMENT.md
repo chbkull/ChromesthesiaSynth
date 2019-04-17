@@ -40,3 +40,5 @@ Also tested the electric guitar program with a midi keyboard, and was also able 
 
 ## 4/16
 After a lot of Googling around and struggling with STK, I was finally able to accomplish the equivalent of Hello World (in this case, Hello Sine) using the raw STK library. The next thing to figure out is live playback. If I can accomplish that, then I can finally start moving putting actual code into this repository and get something basic up and running.
+
+Update after a few hours: after doing some major digging in the source code of the ofxSTK library, I noticed a key difference between it and the STK library itself: for some reason my system was not being recognized as a windows system (__WINDOWS_DS__). By some miracle I happened to stumble across (this issue post)[https://github.com/TonicAudio/Tonic/issues/265] about a different sound library, where they added two things to pre-processor definitions (__WINDOWS_DS__ and WIN32). Upon adding that, the framework now successfully compiles, and I am able to press a key and play a sound via ofxStk. Sweet victory.
