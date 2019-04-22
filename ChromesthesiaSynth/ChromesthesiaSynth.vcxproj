@@ -137,7 +137,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>__WINDOWS_DS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__WINDOWS_DS__;__LITTLE_ENDIAN__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\..\addons\ofxGui\src;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
@@ -160,7 +160,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>__WINDOWS_DS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__WINDOWS_DS__;__LITTLE_ENDIAN__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\..\addons\ofxGui\src;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\stk\projects\demo\utilities.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
@@ -286,6 +287,7 @@
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Wurley.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\stk\projects\demo\utilities.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxButton.h" />
