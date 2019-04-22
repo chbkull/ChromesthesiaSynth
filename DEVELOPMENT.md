@@ -55,3 +55,14 @@ For some reason asiolist.cpp/asiolist.h were not complying, so for the time bein
 
 Project is now named ChromesthesiaSynth, and first code push is through.
 The app now plays a sinewave through ofxStk when the 'a' key is pressed.
+
+## 4/22
+Goal for today: have a single 'track' set up with the following progression: image -> data -> order -> instrument -> media
+- image: Use file explorer to select an image on your computer, then display it in the GUI after it is selected
+- data: What type of image data we want to feed our instrument (brightness, RGB values, etc.)
+- order: In what order to use the aformentioned data (random, left to right, top to bottom, upscale to 16x16, etc.)
+- instrument: Drop down menu of which instrument you want to play the data through
+- media: Pause/play key, maybe a mute key.
+
+Image loading via ofSystemLoadDialog is fairly straightfoward. Will need to implement file checking (to make sure an image is passed in), but will do so later.
+
