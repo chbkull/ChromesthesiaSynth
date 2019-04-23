@@ -41,13 +41,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
@@ -100,7 +100,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\..\addons\ofxGui\src;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\addons\ofxDatGui\src;..\..\..\..\addons\ofxDatGui\src\components;..\..\..\..\addons\ofxDatGui\src\core;..\..\..\..\addons\ofxDatGui\src\libs;..\..\..\..\addons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\..\addons\ofxDatGui\src\themes;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\..\addons\ofxGui\src;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\addons\ofxDatGui\src;..\..\..\..\addons\ofxDatGui\src\components;..\..\..\..\addons\ofxDatGui\src\core;..\..\..\..\addons\ofxDatGui\src\libs;..\..\..\..\addons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\..\addons\ofxDatGui\src\themes;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -140,7 +140,7 @@
       <PreprocessorDefinitions>__WINDOWS_DS__;__LITTLE_ENDIAN__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\..\addons\ofxGui\src;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\addons\ofxDatGui\src;..\..\..\..\addons\ofxDatGui\src\components;..\..\..\..\addons\ofxDatGui\src\core;..\..\..\..\addons\ofxDatGui\src\libs;..\..\..\..\addons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\..\addons\ofxDatGui\src\themes;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -163,7 +163,7 @@
       <PreprocessorDefinitions>__WINDOWS_DS__;__LITTLE_ENDIAN__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);..\..\..\..\addons\ofxGui\src;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\..\addons\ofxDatGui\src;..\..\..\..\addons\ofxDatGui\src\components;..\..\..\..\addons\ofxDatGui\src\core;..\..\..\..\addons\ofxDatGui\src\libs;..\..\..\..\addons\ofxDatGui\src\libs\ofxSmartFont;..\..\..\..\addons\ofxDatGui\src\themes;..\..\..\..\addons\ofxStk\libs;..\..\..\..\addons\ofxStk\libs\STK;..\..\..\..\addons\ofxStk\libs\STK\include;..\..\..\..\addons\ofxStk\libs\STK\src;..\..\..\..\addons\ofxStk\libs\STK\src\include;..\..\..\..\addons\ofxStk\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
@@ -180,19 +180,11 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\stk\projects\demo\utilities.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxButton.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxColorPicker.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxGuiGroup.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxInputField.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxLabel.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxPanel.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="..\..\..\..\addons\ofxDatGui\src\core\ofxDatGuiComponent.cpp" />
+    <ClCompile Include="..\..\..\..\addons\ofxDatGui\src\libs\ofxSmartFont\ofxSmartFont.cpp" />
+    <ClCompile Include="..\..\..\..\addons\ofxDatGui\src\ofxDatGui.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\ADSR.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Asymp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\BandedWG.cpp" />
@@ -230,6 +222,7 @@
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Iir.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asio.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asiodrivers.cpp" />
+    <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asiolist.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\iasiothiscallresolver.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\InetWvIn.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\InetWvOut.cpp" />
@@ -281,25 +274,35 @@
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\TwoPole.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\TwoZero.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\UdpSocket.cpp" />
+    <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\utilities.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Voicer.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\VoicForm.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Whistle.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Wurley.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\stk\projects\demo\utilities.h" />
     <ClInclude Include="src\ofApp.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxButton.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxColorPicker.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxGui.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxGuiGroup.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxInputField.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxLabel.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxPanel.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxSlider.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxToggle.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGui2dPad.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiButton.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiColorPicker.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiControls.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiFRM.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiGroups.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiLabel.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiMatrix.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiScrollView.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiSlider.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiTextInput.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiTextInputField.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiTimeGraph.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\core\ofxDatGuiComponent.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\core\ofxDatGuiConstants.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\core\ofxDatGuiEvents.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\core\ofxDatGuiIntObject.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\libs\ofxSmartFont\ofxSmartFont.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\ofxDatGui.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\themes\ofxDatGuiTheme.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\themes\ofxDatGuiThemes.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\src\ofxStk.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\ADSR.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\Asymp.h" />
@@ -397,6 +400,7 @@
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\TwoPole.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\TwoZero.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\UdpSocket.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\utilities.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\Vector3D.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\Voicer.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\include\VoicForm.h" />
@@ -407,6 +411,7 @@
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asio.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asiodrivers.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asiodrvr.h" />
+    <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asiolist.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\asiosys.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\dsound.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\FunctionDiscoveryKeys_devpkey.h" />

@@ -1,25 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-#include "SineWave.h"
-#include "RtWvOut.h"
-#include "BeeThree.h"
-#include "RtAudio.h"
-#include <cstdlib>
+#include "ofxStk.h"
+#include "ofxDatGui.h"
 
-#include <signal.h>
-#include <utilities.h>
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-#include "SKINImsg.h"
-#include "WvOut.h"
-#include "Instrmnt.h"
-#include "JCRev.h"
-#include "Voicer.h"
-#include "Skini.h"
-#include "RtAudio.h"
-#include "Messager.h"
 using namespace stk;
 
 class ofApp : public ofBaseApp {
@@ -40,8 +24,6 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
-	int rtsine();
-	int beeThreePlay();
 
 	bool draw_image = false;
 	ofImage image;
