@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\data_extracter.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxDatGui\src\core\ofxDatGuiComponent.cpp" />
@@ -279,8 +280,10 @@
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\VoicForm.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Whistle.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Wurley.cpp" />
+    <ClCompile Include="track.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\data_extracter.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGui2dPad.h" />
     <ClInclude Include="..\..\..\..\addons\ofxDatGui\src\components\ofxDatGuiButton.h" />
@@ -419,6 +422,7 @@
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\iasiodrv.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\iasiothiscallresolver.h" />
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\soundcard.h" />
+    <ClInclude Include="track.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

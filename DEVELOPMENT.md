@@ -74,3 +74,9 @@ There is a circular dependency with SKINItbl.h- it is already included in Skini.
 
 ofxDatGuiTimeGraph.h had a problem identifying PI (might have to do with ofxStk also declaring pi?) so it was manually coded in to fix it.
 
+## 4/23
+Track class created, with some basic methods. Working on framing out the class structure on paper first.
+
+DataExtracter class created, with the purpose of taking in an image and extracting out the requested pixel information to feed into an instrument. Produces a 2D array of floats.
+
+Filtering in DataExtracter now works: red/green/blue. Going to try and integrate with a dropdown menu now.

@@ -13,9 +13,11 @@ private:
 public:
 	Track(int channel);
 	~Track();
+
 	ofImage GetImage();
 	bool SetImage(ofImage image);
 	bool SetInstrument(Instrmnt *instrument);
+
 	void Play();
 
 };

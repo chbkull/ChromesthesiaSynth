@@ -27,4 +27,7 @@ public:
 
 	bool draw_image = false;
 	ofImage image;
+	ofxDatGui* gui;
+	ofxDatGuiDropdown* data_dropdown;
+	int data_type = -1;
 };
