@@ -80,3 +80,7 @@ Track class created, with some basic methods. Working on framing out the class s
 DataExtracter class created, with the purpose of taking in an image and extracting out the requested pixel information to feed into an instrument. Produces a 2D array of floats.
 
 Filtering in DataExtracter now works: red/green/blue. Going to try and integrate with a dropdown menu now.
+
+Dropdown menu selection is now converted into the PixelData enum, and will correctly print the pixel data based on a dropdown menu.
+
+Second dropdown menu for the ordering of the data added, and the two selection types now correctly return a vector of floats. Next goal is to convert those floats into a SKINI file.

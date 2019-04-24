@@ -29,5 +29,7 @@ public:
 	ofImage image;
 	ofxDatGui* gui;
 	ofxDatGuiDropdown* data_dropdown;
+	ofxDatGuiDropdown* order_dropdown;
 	int data_type = -1;
+	int order_type = -1;
 };
