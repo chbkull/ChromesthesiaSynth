@@ -28,12 +28,24 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
+	void onButtonEvent(ofxDatGuiButtonEvent e);
+	void onToggleEvent(ofxDatGuiToggleEvent e);
+
+	bool SelectImage(ofImage &image);
+
+	Track track;
 	bool draw_image = false;
+	int data_type = -1;
+	int order_type = -1;
+	int instrument_type = -1;
+
 	ofImage image;
 	ofxDatGui* gui;
 	ofxDatGuiDropdown* data_dropdown;
 	ofxDatGuiDropdown* order_dropdown;
-	int data_type = -1;
-	int order_type = -1;
-	Track track;
+	ofxDatGuiDropdown* instrument_dropdown;
+	ofxDatGuiButton* image_button;
+	ofxDatGuiToggle* play_button;
+	
+	
 };

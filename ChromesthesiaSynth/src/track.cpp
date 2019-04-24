@@ -27,8 +27,8 @@ bool Track::SetInstrument(Instrmnt *instrument) {
 }
 
 int Track::Remap(float original) {
-	int low = 38;
-	int high = 52;
+	int low = 69;
+	int high = 93;
 	int diff = high - low;
 	return (int)floor(((diff * original) / 255) + low);
 }
@@ -37,6 +37,8 @@ void Track::WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrde
 	cout << data.size() << endl;
 	ofstream file;
 	file.open("example.ski");
+	file << "NoteOn 0.1 0 0 0.00" << endl;
+	file << "NoteOff 0.4 0 0 0.00" << endl;
 	for (int x = 0; x < data.size(); x++) {
 		if (data[x] > 0) {
 			file << "NoteOn 0.1 " << channel << " " << Track::Remap(data[x]) << " 100.00" << endl;
@@ -123,7 +125,7 @@ int tick(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	return 0;
 }
 
-void Track::Play(char* file) {
+void Track::Play(char* file, Track::Instruments selected_instrument) {
 	// Set the global sample rate and rawwave path before creating class instances.
 	Stk::setSampleRate(44100.0);
 	Stk::setRawwavePath("data/rawwaves/");
@@ -143,8 +145,21 @@ void Track::Play(char* file) {
 		goto cleanup;
 	}
 	try {
-		// Define and load the BeeThree instrument
-		data.instrument = new BeeThree();
+		// Define and load the instrument
+		switch (selected_instrument) {
+			case Instruments::MandolinInst: {
+				data.instrument = new Mandolin(8.0);
+				break;
+			}
+			case Instruments::PluckedInst: {
+				data.instrument = new Plucked(8.0);
+				break;
+			}
+			case Instruments::SimpleInst: {
+				data.instrument = new Simple();
+				break;
+			}
+		}
 	}
 	catch (StkError &) {
 		goto cleanup;
