@@ -1,14 +1,5 @@
 #include "data_extracter.h"
 
-DataExtracter::DataExtracter()
-{
-}
-
-
-DataExtracter::~DataExtracter()
-{
-}
-
 std::vector<float> DataExtracter::LeftRightOrder(std::vector<std::vector<float>> data) {
 	std::vector<float> ordered_data;
 	for (int y = 0; y < data[0].size(); y++) {

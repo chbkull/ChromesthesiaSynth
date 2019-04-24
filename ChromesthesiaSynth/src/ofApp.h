@@ -3,6 +3,9 @@
 #include "ofMain.h"
 #include "ofxStk.h"
 #include "ofxDatGui.h"
+#include "data_extracter.h"
+#include <iostream>
+#include "track.h"
 
 using namespace stk;
 
@@ -32,4 +35,5 @@ public:
 	ofxDatGuiDropdown* order_dropdown;
 	int data_type = -1;
 	int order_type = -1;
+	Track track;
 };

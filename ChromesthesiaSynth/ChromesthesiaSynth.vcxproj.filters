@@ -304,8 +304,10 @@
     <ClCompile Include="..\..\..\..\addons\ofxStk\libs\STK\src\Wurley.cpp">
       <Filter>addons\ofxStk\libs\STK\src</Filter>
     </ClCompile>
-    <ClCompile Include="track.cpp" />
     <ClCompile Include="src\data_extracter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\track.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -777,8 +779,10 @@
     <ClInclude Include="..\..\..\..\addons\ofxStk\libs\STK\src\include\soundcard.h">
       <Filter>addons\ofxStk\libs\STK\src\include</Filter>
     </ClInclude>
-    <ClInclude Include="track.h" />
     <ClInclude Include="src\data_extracter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\track.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

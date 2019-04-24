@@ -84,3 +84,7 @@ Filtering in DataExtracter now works: red/green/blue. Going to try and integrate
 Dropdown menu selection is now converted into the PixelData enum, and will correctly print the pixel data based on a dropdown menu.
 
 Second dropdown menu for the ordering of the data added, and the two selection types now correctly return a vector of floats. Next goal is to convert those floats into a SKINI file.
+
+Track class now integrates data_extracter and now writes to a SKINI file.
+
+Project now internally plays music from a generated score. This is a huge breakthrough.

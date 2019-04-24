@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "data_extracter.h"
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -8,6 +8,7 @@ void ofApp::setup(){
 	data_dropdown = gui->addDropdown("Select an option", data_options);
 	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random", "8x8" };
 	order_dropdown = gui->addDropdown("Select an option", order_options);
+	track.SetChannel(0);
 	
 }
 
@@ -32,18 +33,17 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
 	switch (key) {
 		case 'd':
+		{
 			data_type = data_dropdown->getSelected()->getIndex();
 			order_type = order_dropdown->getSelected()->getIndex();
 			if (draw_image && data_type != -1 && order_type != -1) {
-				std::vector<float> data = DataExtracter::Extract(image, static_cast<DataExtracter::PixelData>(data_type), static_cast<DataExtracter::PixelOrder>(order_type));
-				cout << "size: " << data.size() << endl;
-				for (int x = 0; x < data.size(); x++) {
-					cout << data[x] << " ";
-				}
-				cout << endl;
+				track.SetImage(image);
+				track.WriteTrack(static_cast<DataExtracter::PixelData>(data_type), static_cast<DataExtracter::PixelOrder>(order_type));
 			}
 			break;
+		}
 		case ' ':
+		{
 			ofFileDialogResult openFileResult = ofSystemLoadDialog("Select an image");
 
 			//Check if the user opened a file
@@ -56,6 +56,10 @@ void ofApp::keyReleased(int key){
 			else {
 				ofLogVerbose("User hit cancel");
 			}
+			break;
+		}
+		case 'p':
+			track.Play("example.ski");
 			break;
 	}
 }
