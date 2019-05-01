@@ -20,15 +20,15 @@ void ofApp::setup(){
 		ofxDatGui* current_gui = tracks[i].gui;
 		string header = "Track " + to_string(i + 1);
 		current_gui->addHeader(header);
-		tracks[i].image_button = current_gui->addButton("Select an image");
+		tracks[i].image_button = current_gui->addButton("Select Image");
 		tracks[i].image_button->onButtonEvent(this, &ofApp::onButtonEvent);
-		tracks[i].clear_image_button = current_gui->addButton("Clear image");
-		tracks[i].clear_image_button->onButtonEvent(this, &ofApp::onButtonEvent);
-		tracks[i].data_dd = current_gui->addDropdown("Select a data type", data_options);
-		tracks[i].order_dd = current_gui->addDropdown("Select an order type", order_options);
+		tracks[i].data_dd = current_gui->addDropdown("Select a Data Type", data_options);
+		tracks[i].order_dd = current_gui->addDropdown("Select an Order Type", order_options);
 		tracks[i].instrument_dd = current_gui->addDropdown("Select an instrument", instrument_options);
 		tracks[i].volume_slider = current_gui->addSlider("Volume", 0.00, 100.00);
 		tracks[i].volume_slider->onSliderEvent(this, &ofApp::onSliderEvent);
+		tracks[i].clear_button = current_gui->addButton("Clear image");
+		tracks[i].clear_button->onButtonEvent(this, &ofApp::onButtonEvent);
 		tracks[i].track = new Track();
 
 		xPos += 270;
@@ -37,6 +37,11 @@ void ofApp::setup(){
 	gui = new ofxDatGui(ofxDatGuiAnchor::BOTTOM_RIGHT);
 	play_button = gui->addToggle("Play");
 	play_button->onToggleEvent(this, &ofApp::onToggleEvent);
+
+	ofxDatGui* exit_gui = new ofxDatGui(ofxDatGuiAnchor::BOTTOM_LEFT);
+	exit_button = exit_gui->addButton("Exit");
+	exit_button->onButtonEvent(this, &ofApp::onButtonEvent);
+
 	
 }
 
@@ -53,9 +58,6 @@ void ofApp::draw(){
 			copy.resize(270, 270);
 			copy.draw(270 * i, 0);
 		}
-	}
-	if (draw_image) {
-		image.draw(0, 0);
 	}
 }
 
@@ -123,9 +125,16 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e) {
 			}
 		}
 
-		if (e.target == tracks[i].clear_image_button) {
-			tracks[i].track->ClearImage();
+		if (e.target == tracks[i].clear_button) {
+			tracks[i].data_dd->select(0);
+			tracks[i].order_dd->select(0);
+			tracks[i].instrument_dd->select(0);
+			tracks[i].track->ClearTrack();
 		}
+	}
+
+	if (e.target == exit_button) {
+		OF_EXIT_APP(0);
 	}
 }
 

@@ -1,16 +1,5 @@
 #include "mixer.h"
 
-
-
-Mixer::Mixer()
-{
-}
-
-
-Mixer::~Mixer()
-{
-}
-
 void Mixer::Write(vector<Track> tracks) {
 
 	vector <vector<float>> track_data;
@@ -36,12 +25,9 @@ void Mixer::Write(vector<Track> tracks) {
 		for (int track_num = 0; track_num < track_data.size(); track_num++) {
 			if (tracks[track_num].GetInstrument() && track_data[track_num].size() > 0 && track_data[track_num][i] > 0) {
 				if (track_num == 0) {
-					//file << "NoteOff 0.5 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
 					file << "NoteOff 0.5 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << (tracks[track_num].GetVolume() / 3.00) << endl;
-
 				}
 				else {
-					//file << "NoteOff 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
 					file << "NoteOff 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << (tracks[track_num].GetVolume() / 3.00) << endl;
 
 				}

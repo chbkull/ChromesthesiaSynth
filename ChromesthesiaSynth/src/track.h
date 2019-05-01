@@ -9,7 +9,7 @@ class Track
 {
 private:
 	
-	Instrmnt *instrument;
+	Instrmnt *instrument = nullptr;
 	bool image_loaded = false;
 	float volume = 50.00;
 	
@@ -26,21 +26,17 @@ public:
 		BowedInst, ClarinetInst, MandolinInst, PercFlutInst, 
 		PluckedInst, RhodeyInst, SaxofonyInst, ShakerInst, 
 		SimpleInst, SitarInst, TubeBellInst, WhistleInst, 
-		WurleyInst, TestInst};
+		WurleyInst};
 
 	ofImage image;
 	bool SetImage(ofImage image);
 	bool SetInstrument(Track::Instruments selected);
 	Instrmnt* GetInstrument();
 	bool HasImage();
-	void ClearImage();
+	void ClearTrack();
 	bool SetVolume(float volume);
 	float GetVolume();
 
-	void WriteTrack();
 	vector<float> GetData();
-
-	void Play(char* file, Track::Instruments selected_instrument);
-
 };
 

@@ -13,9 +13,13 @@ using namespace stk;
 class ofApp : public ofBaseApp {
 
 private: 	
-	vector<string> data_options = { "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
-	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random" };
-	vector<string> instrument_options = { "none", "Bee Three", "Blow Bottle", "Blow Hole", "Bowed", "Clarinet", "Mandolin", "Percussion Flute", "Plucked", "Rhodey", "Saxofony", "Shaker", "Simple", "Sitar", "Tube Bell", "Whistle", "Wurley", "Test" };
+	vector<string> data_options = { "Select a Data Type", "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
+	vector<string> order_options = { "Select an Order Type", "Left-Right", "Top-Bottom", "Random" };
+	vector<string> instrument_options = { "Select an Instrument", "Bee Three", "Blow Bottle", "Blow Hole", 
+		"Bowed", "Clarinet", "Mandolin", "Percussion Flute", 
+		"Plucked", "Rhodey", "Saxofony", "Shaker", 
+		"Simple", "Sitar", "Tube Bell", "Whistle", 
+		"Wurley"};
 
 public:
 	void setup();
@@ -46,19 +50,17 @@ public:
 	int order_type = -1;
 	int instrument_type = -1;
 
-	ofImage image;
 	ofxDatGui* gui;
-	ofxDatGuiDropdown* data_dropdown;
-	ofxDatGuiDropdown* order_dropdown;
-	ofxDatGuiDropdown* instrument_dropdown;
-	ofxDatGuiButton* image_button;
 	ofxDatGuiToggle* play_button;
+
+	ofxDatGui* exit_gui;
+	ofxDatGuiButton* exit_button;
 	
 	struct TrackGui {
 		ofImage track_image;
 		ofxDatGui* gui;
 		ofxDatGuiButton* image_button;
-		ofxDatGuiButton* clear_image_button;
+		ofxDatGuiButton* clear_button;
 		ofxDatGuiDropdown* data_dd;
 		ofxDatGuiDropdown* order_dd;
 		ofxDatGuiDropdown* instrument_dd;

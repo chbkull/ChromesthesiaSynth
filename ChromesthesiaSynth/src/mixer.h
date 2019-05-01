@@ -9,8 +9,6 @@ class Mixer
 
 {
 public:
-	Mixer();
-	~Mixer();
 	static void Write(vector<Track> tracks);
 	static void Play(char* file, vector<Track> tracks);
 };

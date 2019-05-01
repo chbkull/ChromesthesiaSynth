@@ -27,13 +27,17 @@ bool Track::HasImage() {
 	return image_loaded;
 }
 
-void Track::ClearImage() {
+void Track::ClearTrack() {
 	image.clear();
 	image_loaded = false;
+	instrument = nullptr;
+	p_data_type = DataExtracter::PixelData::NonePD;
+	p_order_type = DataExtracter::PixelOrder::NonePO;
 }
 
 bool Track::SetInstrument(Track::Instruments selected) {
 	Stk::setRawwavePath("data/rawwaves/");
+	
 	try {
 		switch (selected) {
 			case Instruments::NoneInst: {
@@ -101,10 +105,6 @@ bool Track::SetInstrument(Track::Instruments selected) {
 				return true;
 			}
 			case Instruments::WurleyInst: {
-				instrument = new Wurley();
-				return true;
-			}
-			case Instruments::TestInst: {
 				instrument = new Wurley();
 				return true;
 			}
