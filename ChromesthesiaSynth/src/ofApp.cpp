@@ -35,14 +35,6 @@ void ofApp::setup(){
 	}
 
 	gui = new ofxDatGui(ofxDatGuiAnchor::BOTTOM_RIGHT);
-	/*
-	gui->addHeader("this is a header");
-	image_button = gui->addButton("Select an image");
-	image_button->onButtonEvent(this, &ofApp::onButtonEvent);
-	data_dropdown = gui->addDropdown("Select a data type", data_options);
-	order_dropdown = gui->addDropdown("Select an order type", order_options);
-	instrument_dropdown = gui->addDropdown("Select an instrument", instrument_options);
-	*/
 	play_button = gui->addToggle("Play");
 	play_button->onToggleEvent(this, &ofApp::onToggleEvent);
 	
@@ -123,10 +115,6 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::onButtonEvent(ofxDatGuiButtonEvent e) {
-	//string button_hit = e.target->getLabel();
-	if (e.target == image_button) {
-		SelectImage(image);
-	}
 
 	for (int i = 0; i < tracks.size(); i++) {
 		if (e.target == tracks[i].image_button) {
@@ -166,7 +154,6 @@ bool ofApp::SelectImage(ofImage &image) {
 void ofApp::onSliderEvent(ofxDatGuiSliderEvent e) {
 	for (int i = 0; i < tracks.size(); i++) {
 		if (e.target == tracks[i].volume_slider) {
-			cout << "moving" << endl;
 			tracks[i].track->SetVolume(e.value);
 		}
 	}
@@ -188,32 +175,6 @@ void ofApp::onToggleEvent(ofxDatGuiToggleEvent e)
 
 			Mixer::Write(track_vec);
 			Mixer::Play("voicer.ski", track_vec);
-
-			/*
-			track.p_data_type = static_cast<DataExtracter::PixelData>(data_dropdown->getSelected()->getIndex());
-			track.p_order_type = static_cast<DataExtracter::PixelOrder>(order_dropdown->getSelected()->getIndex());
-			instrument_type = instrument_dropdown->getSelected()->getIndex();
-			if (draw_image) {
-				track.SetImage(image);
-				//track.WriteTrack(static_cast<DataExtracter::PixelData>(data_type), static_cast<DataExtracter::PixelOrder>(order_type));
-				//track.WriteTrack();
-				track.SetInstrument(static_cast<Track::Instruments>(instrument_type));
-				tracks.push_back(track);
-
-				Track test_track;
-
-				test_track.p_data_type = DataExtracter::PixelData::Green;
-				test_track.p_order_type = DataExtracter::PixelOrder::TB;
-				test_track.SetImage(image);
-				test_track.SetInstrument(Track::Instruments::MandolinInst);
-				
-				tracks.push_back(test_track);
-
-				Mixer::Write(tracks);
-				//track.Play("voicer.ski", static_cast<Track::Instruments>(instrument_type));
-				Mixer::Play("voicer.ski", tracks);
-			}
-			*/
 		}
 	}
 }

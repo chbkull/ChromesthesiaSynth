@@ -15,8 +15,7 @@ class ofApp : public ofBaseApp {
 private: 	
 	vector<string> data_options = { "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
 	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random" };
-	vector<string> instrument_options = { "Mandolin", "Plucked", "Simple", "Test" };
-
+	vector<string> instrument_options = { "none", "Bee Three", "Blow Bottle", "Blow Hole", "Bowed", "Clarinet", "Mandolin", "Percussion Flute", "Plucked", "Rhodey", "Saxofony", "Shaker", "Simple", "Sitar", "Tube Bell", "Whistle", "Wurley", "Test" };
 
 public:
 	void setup();

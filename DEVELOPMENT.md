@@ -110,4 +110,8 @@ UI for 4 separate tracks implemented, now can play four instrument simultaneousl
 
 Added a button to clear an image from a track.
 
-Working on volume sliders.
+Volume sliders now work as intended.
+
+Noticed that instruments were ending with a "mandolin" aftertone. I suspect that it is due to the instruments being implicitly initialized as Mandolins, then changed later.
+
+Fixed the aftertone by initializing instruments to a nullptr and then adding some conditionals to not allow nullptrs through.

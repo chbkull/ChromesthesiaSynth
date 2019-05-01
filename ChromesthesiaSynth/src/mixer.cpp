@@ -12,7 +12,6 @@ Mixer::~Mixer()
 }
 
 void Mixer::Write(vector<Track> tracks) {
-	cout << "entered write" << endl;
 
 	vector <vector<float>> track_data;
 	vector<float> dummy;
@@ -23,27 +22,28 @@ void Mixer::Write(vector<Track> tracks) {
 		}
 	}
 
-	cout << "data set" << endl;
-
 	ofstream file;
 	file.open("voicer.ski");
 	file << "NoteOn 0.1 0 0 0.00" << endl;
 	file << "NoteOff 0.4 0 0 0.00" << endl;
 	for (int i = 0; i < track_data[0].size(); i++) {
 		for (int track_num = 0; track_num < track_data.size(); track_num++) {
-			if (track_data[track_num].size() > 0 && track_data[track_num][i] > 0) {
-				cout << track_num << ": " << tracks[track_num].GetVolume() << endl;
-				file << "NoteOn 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << tracks[track_num].GetVolume() << endl;
+			if (tracks[track_num].GetInstrument() && track_data[track_num].size() > 0 && track_data[track_num][i] > 0) {
+				file << "NoteOn 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << (tracks[track_num].GetVolume() / 3.00) << endl;
 			}
 		}
 
 		for (int track_num = 0; track_num < track_data.size(); track_num++) {
-			if (track_data[track_num][i] > 0) {
+			if (tracks[track_num].GetInstrument() && track_data[track_num].size() > 0 && track_data[track_num][i] > 0) {
 				if (track_num == 0) {
-					file << "NoteOff 0.5 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
+					//file << "NoteOff 0.5 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
+					file << "NoteOff 0.5 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << (tracks[track_num].GetVolume() / 3.00) << endl;
+
 				}
 				else {
-					file << "NoteOff 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
+					//file << "NoteOff 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
+					file << "NoteOff 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << (tracks[track_num].GetVolume() / 3.00) << endl;
+
 				}
 			}
 		}
@@ -167,8 +167,13 @@ void Mixer::Play(char* file, vector<Track> tracks)
 		goto cleanup;
 	}
 	// "Add" the instruments to the voicer.
-	for (i = 0; i < tracks.size(); i++)
-		data.voicer.addInstrument(instrument[i]);
+	for (i = 0; i < tracks.size(); i++) {
+		if (instrument[i]) {
+			data.voicer.addInstrument(instrument[i]);
+			cout << "added instrument" << endl;
+		}		
+	}
+		
 	if (data.messager.setScoreFile(file) == false)
 		goto cleanup;
 	try {

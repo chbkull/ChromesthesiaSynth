@@ -22,10 +22,13 @@ public:
 	Track();
 	~Track();
 
-	enum Instruments {MandolinInst, PluckedInst, SimpleInst, TestInst};
+	enum Instruments {NoneInst, BeeThreeInst, BlowBotlInst, BlowHoleInst, 
+		BowedInst, ClarinetInst, MandolinInst, PercFlutInst, 
+		PluckedInst, RhodeyInst, SaxofonyInst, ShakerInst, 
+		SimpleInst, SitarInst, TubeBellInst, WhistleInst, 
+		WurleyInst, TestInst};
 
 	ofImage image;
-	//ofImage GetImage();
 	bool SetImage(ofImage image);
 	bool SetInstrument(Track::Instruments selected);
 	Instrmnt* GetInstrument();
@@ -34,7 +37,6 @@ public:
 	bool SetVolume(float volume);
 	float GetVolume();
 
-	//void WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order);
 	void WriteTrack();
 	vector<float> GetData();
 
