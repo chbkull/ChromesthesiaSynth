@@ -16,7 +16,7 @@ public:
 	Track();
 	~Track();
 
-	enum Instruments {MandolinInst, PluckedInst, SimpleInst};
+	enum Instruments {MandolinInst, PluckedInst, SimpleInst, TestInst};
 
 	ofImage GetImage();
 	bool SetChannel(int channel);

@@ -13,6 +13,6 @@ private:
 	static std::vector<float> LeftRightOrder(std::vector<std::vector<float>> data);
 	static std::vector<float> TopBottomOrder(std::vector<std::vector<float>> data);
 	static std::vector<float> RandomOrder(std::vector<std::vector<float>> data);
-	static std::vector<float> EightByEightOrder(std::vector<std::vector<float>> data);
+	static std::vector<vector<float>> Upscale(std::vector<std::vector<float>> data, int size);
 };
 

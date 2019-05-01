@@ -38,29 +38,44 @@ std::vector<float> DataExtracter::RandomOrder(std::vector<std::vector<float>> da
 	return randomized;
 }
 
-std::vector<float> DataExtracter::EightByEightOrder(std::vector<std::vector<float>> data) {
-	std::vector<std::vector<float>> totals(64, vector<float>());
-	int horizontal_divider = data.size() / 8;
-	int vertical_divider = data[0].size() / 8;
+std::vector<vector<float>> DataExtracter::Upscale(std::vector<std::vector<float>> data, int size) {
+	std::vector<std::vector<float>> totals(pow(size, 2), vector<float>());
+	std::vector<std::vector<float>> upscaled(size, vector<float>());
+	int horizontal_divider = ceil((double) data.size() / (double) size);
+	int vertical_divider = ceil((double) data[0].size() / (double) size);
+
+	cout << "entered upscale" << endl;
 
 	for (int x = 0; x < data.size(); x++) {
+		//cout << "x: " << x << endl;
 		for (int y = 0; y < data[x].size(); y++) {
-			int index = (x / horizontal_divider) + 8 * (y / vertical_divider);
+			//cout << "y: " << y << endl;
+			int index = (x / horizontal_divider) + size * (y / vertical_divider);
+			//cout << "index: " << index << endl;
 			totals[index].push_back(data[x][y]);
 		}
 	}
 
+	cout << "first loop done" << endl;
+
 	std::vector<float> averaged;
+	int x = 0;
+	int y = 0;
 	for (int i = 0; i < totals.size(); i++) {
 		int sum = 0;
 		for (int j = 0; j < totals[i].size(); j++) {
 			sum += totals[i][j];
 		}
 		
-		averaged.push_back(sum / totals[i].size());
+		upscaled[x].push_back(sum / totals[i].size());
+		y++;
+		if (y >= size) {
+			x++;
+			y = 0;
+		}
 	}
 	
-	return averaged;
+	return upscaled;
 }
 
 std::vector<float> DataExtracter::Extract(ofImage image, PixelData p_data, PixelOrder p_order) {
@@ -96,12 +111,10 @@ std::vector<float> DataExtracter::Extract(ofImage image, PixelData p_data, Pixel
 
 	switch (p_order) {
 	case PixelOrder::LR:
-		return LeftRightOrder(filtered_data);
+		return LeftRightOrder(Upscale(filtered_data, 4));
 	case PixelOrder::TB:
-		return TopBottomOrder(filtered_data);
+		return TopBottomOrder(Upscale(filtered_data, 4));
 	case PixelOrder::Random:
-		return RandomOrder(filtered_data);
-	case PixelOrder::EightByEight:
-		return EightByEightOrder(filtered_data);
+		return RandomOrder(Upscale(filtered_data, 4));
 	}
 }

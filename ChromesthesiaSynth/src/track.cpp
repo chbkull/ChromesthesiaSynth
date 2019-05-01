@@ -27,22 +27,21 @@ bool Track::SetInstrument(Instrmnt *instrument) {
 }
 
 int Track::Remap(float original) {
-	int low = 69;
-	int high = 93;
+	int low = 26;
+	int high = 33;
 	int diff = high - low;
 	return (int)floor(((diff * original) / 255) + low);
 }
 void Track::WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order) {
 	std::vector<float> data = DataExtracter::Extract(image, p_data, p_order);
-	cout << data.size() << endl;
 	ofstream file;
 	file.open("example.ski");
 	file << "NoteOn 0.1 0 0 0.00" << endl;
 	file << "NoteOff 0.4 0 0 0.00" << endl;
 	for (int x = 0; x < data.size(); x++) {
 		if (data[x] > 0) {
-			file << "NoteOn 0.1 " << channel << " " << Track::Remap(data[x]) << " 100.00" << endl;
-			file << "NoteOff 0.5 " << channel << " " << Track::Remap(data[x]) << " 64.00" << endl;
+			file << "NoteOn 0 " << channel << " " << stk::Midi2Pitch[Track::Remap(data[x])] << " 100.00" << endl;
+			file << "NoteOff 0.5 " << channel << " " << stk::Midi2Pitch[Track::Remap(data[x])] << " 64.00" << endl;
 		}	
 	}
 	file.close();
@@ -77,8 +76,7 @@ void processMessage(TickData* data)
 		if (value2 == 0.0) // velocity is zero ... really a NoteOff
 			data->instrument->noteOff(0.5);
 		else { // a NoteOn
-			StkFloat frequency = 220.0 * pow(2.0, (value1 - 57.0) / 12.0);
-			data->instrument->noteOn(frequency, value2 * ONE_OVER_128);
+			data->instrument->noteOn(value1, value2 * ONE_OVER_128);
 		}
 		break;
 	case __SK_NoteOff_:
@@ -157,6 +155,10 @@ void Track::Play(char* file, Track::Instruments selected_instrument) {
 			}
 			case Instruments::SimpleInst: {
 				data.instrument = new Simple();
+				break;
+			}
+			case Instruments::TestInst: {
+				data.instrument = new Wurley();
 				break;
 			}
 		}

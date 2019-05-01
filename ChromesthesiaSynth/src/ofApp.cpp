@@ -3,14 +3,14 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	gui = new ofxDatGui(ofxDatGuiAnchor::TOP_LEFT);
+	gui = new ofxDatGui(ofxDatGuiAnchor::TOP_RIGHT);
 	image_button = gui->addButton("Select an image");
 	image_button->onButtonEvent(this, &ofApp::onButtonEvent);
 	vector<string> data_options = { "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
 	data_dropdown = gui->addDropdown("Select a data type", data_options);
 	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random", "8x8" };
 	order_dropdown = gui->addDropdown("Select an order type", order_options);
-	vector<string> instrument_options = { "Mandolin", "Plucked", "Simple" };
+	vector<string> instrument_options = { "Mandolin", "Plucked", "Simple", "Test" };
 	instrument_dropdown = gui->addDropdown("Select an instrument", instrument_options);
 	play_button = gui->addToggle("Play");
 	play_button->onToggleEvent(this, &ofApp::onToggleEvent);
@@ -28,7 +28,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	if (draw_image) {
-		image.draw(200, 200);
+		image.draw(0, 0);
 	}
 }
 
@@ -131,7 +131,6 @@ bool ofApp::SelectImage(ofImage &image) {
 
 void ofApp::onToggleEvent(ofxDatGuiToggleEvent e)
 {
-	cout << e.target->getLabel() << " checked = " << e.checked << endl;
 	if (e.target->getLabel() == "Play") {
 		if (e.checked == 1) {
 			data_type = data_dropdown->getSelected()->getIndex();

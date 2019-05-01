@@ -88,3 +88,6 @@ Second dropdown menu for the ordering of the data added, and the two selection t
 Track class now integrates data_extracter and now writes to a SKINI file.
 
 Project now internally plays music from a generated score. This is a huge breakthrough.
+
+## 4/24
+Image selection button, instrument selection, and a play button added and implemented.
