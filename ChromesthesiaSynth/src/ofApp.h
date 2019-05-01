@@ -6,6 +6,7 @@
 #include "data_extracter.h"
 #include <iostream>
 #include "track.h"
+#include "mixer.h"
 
 using namespace stk;
 

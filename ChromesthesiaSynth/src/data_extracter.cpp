@@ -39,12 +39,11 @@ std::vector<float> DataExtracter::RandomOrder(std::vector<std::vector<float>> da
 }
 
 std::vector<vector<float>> DataExtracter::Upscale(std::vector<std::vector<float>> data, int size) {
+	
 	std::vector<std::vector<float>> totals(pow(size, 2), vector<float>());
 	std::vector<std::vector<float>> upscaled(size, vector<float>());
 	int horizontal_divider = ceil((double) data.size() / (double) size);
 	int vertical_divider = ceil((double) data[0].size() / (double) size);
-
-	cout << "entered upscale" << endl;
 
 	for (int x = 0; x < data.size(); x++) {
 		//cout << "x: " << x << endl;
@@ -55,8 +54,6 @@ std::vector<vector<float>> DataExtracter::Upscale(std::vector<std::vector<float>
 			totals[index].push_back(data[x][y]);
 		}
 	}
-
-	cout << "first loop done" << endl;
 
 	std::vector<float> averaged;
 	int x = 0;
@@ -74,13 +71,11 @@ std::vector<vector<float>> DataExtracter::Upscale(std::vector<std::vector<float>
 			y = 0;
 		}
 	}
-	
 	return upscaled;
 }
 
 std::vector<float> DataExtracter::Extract(ofImage image, PixelData p_data, PixelOrder p_order) {
 	std::vector<std::vector<float>> filtered_data(image.getWidth(), std::vector<float>(image.getHeight()));
-
 	for (int x = 0; x < image.getWidth(); x++) {
 		for (int y = 0; y < image.getHeight(); y++) {
 			switch (p_data) {
@@ -109,12 +104,14 @@ std::vector<float> DataExtracter::Extract(ofImage image, PixelData p_data, Pixel
 		}
 	}
 
+	
+
 	switch (p_order) {
-	case PixelOrder::LR:
-		return LeftRightOrder(Upscale(filtered_data, 4));
-	case PixelOrder::TB:
-		return TopBottomOrder(Upscale(filtered_data, 4));
-	case PixelOrder::Random:
-		return RandomOrder(Upscale(filtered_data, 4));
+		case PixelOrder::LR:
+			return LeftRightOrder(Upscale(filtered_data, 4));
+		case PixelOrder::TB:
+			return TopBottomOrder(Upscale(filtered_data, 4));
+		case PixelOrder::Random:
+			return RandomOrder(Upscale(filtered_data, 4));
 	}
 }

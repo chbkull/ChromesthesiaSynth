@@ -310,6 +310,9 @@
     <ClCompile Include="src\track.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\mixer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -783,6 +786,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\track.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mixer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

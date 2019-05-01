@@ -8,7 +8,7 @@ void ofApp::setup(){
 	image_button->onButtonEvent(this, &ofApp::onButtonEvent);
 	vector<string> data_options = { "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
 	data_dropdown = gui->addDropdown("Select a data type", data_options);
-	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random", "8x8" };
+	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random"};
 	order_dropdown = gui->addDropdown("Select an order type", order_options);
 	vector<string> instrument_options = { "Mandolin", "Plucked", "Simple", "Test" };
 	instrument_dropdown = gui->addDropdown("Select an instrument", instrument_options);
@@ -39,20 +39,7 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	switch (key) {
-		case 'd':
-		{
-			data_type = data_dropdown->getSelected()->getIndex();
-			order_type = order_dropdown->getSelected()->getIndex();
-			instrument_type = instrument_dropdown->getSelected()->getIndex();
-			if (draw_image && data_type != -1 && order_type != -1) {
-				track.SetImage(image);
-				track.WriteTrack(static_cast<DataExtracter::PixelData>(data_type), static_cast<DataExtracter::PixelOrder>(order_type));
-				track.Play("example.ski", static_cast<Track::Instruments>(instrument_type));
-			}
-			break;
-		}
-	}
+
 }
 
 //--------------------------------------------------------------
@@ -133,13 +120,19 @@ void ofApp::onToggleEvent(ofxDatGuiToggleEvent e)
 {
 	if (e.target->getLabel() == "Play") {
 		if (e.checked == 1) {
-			data_type = data_dropdown->getSelected()->getIndex();
-			order_type = order_dropdown->getSelected()->getIndex();
+			vector<Track> tracks;
+			track.p_data_type = static_cast<DataExtracter::PixelData>(data_dropdown->getSelected()->getIndex());
+			track.p_order_type = static_cast<DataExtracter::PixelOrder>(order_dropdown->getSelected()->getIndex());
 			instrument_type = instrument_dropdown->getSelected()->getIndex();
-			if (draw_image && data_type != -1 && order_type != -1) {
+			if (draw_image) {
 				track.SetImage(image);
-				track.WriteTrack(static_cast<DataExtracter::PixelData>(data_type), static_cast<DataExtracter::PixelOrder>(order_type));
-				track.Play("example.ski", static_cast<Track::Instruments>(instrument_type));
+				//track.WriteTrack(static_cast<DataExtracter::PixelData>(data_type), static_cast<DataExtracter::PixelOrder>(order_type));
+				track.WriteTrack();
+				track.SetInstrument(static_cast<Track::Instruments>(instrument_type));
+				tracks.push_back(track);
+				Mixer::Write(tracks);
+				//track.Play("voicer.ski", static_cast<Track::Instruments>(instrument_type));
+				Mixer::Play("voicer.ski", tracks);
 			}
 		}
 	}

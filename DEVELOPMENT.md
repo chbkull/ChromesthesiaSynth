@@ -91,3 +91,14 @@ Project now internally plays music from a generated score. This is a huge breakt
 
 ## 4/24
 Image selection button, instrument selection, and a play button added and implemented.
+
+## 4/30
+Turns out frequencies were not being picked like I thought they were. Instead of referencing an array there was a complicated equation used.
+
+Ended up creating my own array containing no flats/sharps (so C major) and then changed the notes to play based on that array.
+
+Reverted back to the original array, instead remapping to a C major scale via modular arithmetic. Makes it easier to code in other scales as well.
+
+Created a mixer class to try and implement voicer (used for multi instrument playback).
+
+A lot of code refactoring later, playback via the voicer through mixer is now possible. Now need to test using two voices.

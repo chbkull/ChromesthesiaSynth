@@ -5,7 +5,7 @@ class DataExtracter
 {
 public:
 	enum PixelData {Red, Green, Blue, Lightness, Hue, Saturation, Brightness};
-	enum PixelOrder {LR, TB, Random, EightByEight};
+	enum PixelOrder {LR, TB, Random};
 
 	static std::vector<float> Extract(ofImage image, PixelData data, PixelOrder order);
 

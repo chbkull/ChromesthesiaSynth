@@ -1,109 +1,51 @@
-#include "track.h"
+#include "mixer.h"
 
 
-Track::Track() {
-}
 
-Track::~Track()
+Mixer::Mixer()
 {
 }
 
-bool Track::SetChannel(int channel) {
-	this->channel = channel;
-	return true;
+
+Mixer::~Mixer()
+{
 }
 
-ofImage Track::GetImage() {
-	return image;
-}
-
-bool Track::SetImage(ofImage image) {
-	this->image = image;
-	return true;
-}
-
-bool Track::SetInstrument(Track::Instruments selected) {
-	Stk::setRawwavePath("data/rawwaves/");
-	try {
-		switch (selected) {
-			case Instruments::MandolinInst: {
-				instrument = new Mandolin(8.0);
-				return true;
-			}
-			case Instruments::PluckedInst: {
-				instrument = new Plucked(8.0);
-				return true;
-			}
-			case Instruments::SimpleInst: {
-				instrument = new Simple();
-				return true;
-			}
-			case Instruments::TestInst: {
-				instrument = new Wurley();
-				return true;
-			}
-		}
+void Mixer::Write(vector<Track> tracks) {
+	vector <vector<float>> track_data;
+	for (int i = 0; i < tracks.size(); i++) {
+		track_data.push_back(tracks[i].GetData());
 	}
-	catch (StkError &) {
-		return false;
-	}
-}
-
-Instrmnt* Track::GetInstrument() {
-	return instrument;
-}
-
-vector<float> Track::GetData() {
-	
-	return DataExtracter::Extract(image, p_data_type, p_order_type);
-}
-
-int Track::Remap(float original) {
-	int cScaleMod[7] = { 0, 2, 3, 5, 7, 8, 10};
-	
-	int low = 57;
-	int high = 68;
-	int diff = high - low;
-	int result = (int)floor(((diff * original) / 255) + low);
-	int mod = (result - 9) % 12;
-	bool check = false;
-	for (int i = 0; i < sizeof(cScaleMod); i++) {
-		if (mod == cScaleMod[i]) {
-			check = true;
-			break;
-		}
-	}
-
-	if (check) {
-		return result;
-	}
-	else {
-		return result - 1;
-	}
-}
-//void Track::WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order) {
-void Track::WriteTrack() {
-	//std::vector<float> data = DataExtracter::Extract(image, p_data_type, p_order_type);
-	std::vector<float> data = GetData();
 
 	ofstream file;
-	file.open("example.ski");
+	file.open("voicer.ski");
 	file << "NoteOn 0.1 0 0 0.00" << endl;
 	file << "NoteOff 0.4 0 0 0.00" << endl;
-	for (int x = 0; x < data.size(); x++) {
-		if (data[x] > 0) {
-			file << "NoteOn 0 " << channel << " " << stk::Midi2Pitch[Track::Remap(data[x])] << " 100.00" << endl;
-			file << "NoteOff 0.5 " << channel << " " << stk::Midi2Pitch[Track::Remap(data[x])] << " 64.00" << endl;
-		}	
+	for (int i = 0; i < track_data[0].size(); i++) {
+		for (int track_num = 0; track_num < track_data.size(); track_num++) {
+			if (track_data[track_num][i] > 0) {
+				file << "NoteOn 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 100.00" << endl;
+			}
+		}
+
+		for (int track_num = 0; track_num < track_data.size(); track_num++) {
+			if (track_data[track_num][i] > 0) {
+				if (track_num == 0) {
+					file << "NoteOff 0.5 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
+				}
+				else {
+					file << "NoteOff 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 64.00" << endl;
+				}
+			}
+		}
 	}
 	file.close();
 }
 
-/*
 // The TickData structure holds all the class instances and data that
 // are shared by the various processing functions.
 struct TickData {
-	Instrmnt *instrument;
+	Voicer voicer;
 	Messager messager;
 	Skini::Message message;
 	int counter;
@@ -111,7 +53,7 @@ struct TickData {
 	bool done;
 	// Default constructor.
 	TickData()
-		: instrument(0), counter(0), haveMessage(false), done(false) {}
+		: counter(0), haveMessage(false), done(false) {}
 };
 #define DELTA_CONTROL_TICKS 64 // default sample frames between control input checks
 // The processMessage() function encapsulates the handling of control
@@ -127,19 +69,24 @@ void processMessage(TickData* data)
 		return;
 	case __SK_NoteOn_:
 		if (value2 == 0.0) // velocity is zero ... really a NoteOff
-			data->instrument->noteOff(0.5);
+			data->voicer.noteOff(value1, 64.0);
 		else { // a NoteOn
-			data->instrument->noteOn(value1, value2 * ONE_OVER_128);
+			data->voicer.noteOn(value1, value2);
 		}
 		break;
 	case __SK_NoteOff_:
-		data->instrument->noteOff(value2 * ONE_OVER_128);
+		data->voicer.noteOff(value1, value2);
 		break;
 	case __SK_ControlChange_:
-		data->instrument->controlChange((int)value1, value2);
+		data->voicer.controlChange((int)value1, value2);
 		break;
 	case __SK_AfterTouch_:
-		data->instrument->controlChange(128, value1);
+		data->voicer.controlChange(128, value1);
+	case __SK_PitchChange_:
+		data->voicer.setFrequency(value1);
+		break;
+	case __SK_PitchBend_:
+		data->voicer.pitchBend(value1);
 	} // end of switch
 	data->haveMessage = false;
 	return;
@@ -166,7 +113,7 @@ int tick(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 		counter = min(nTicks, data->counter);
 		data->counter -= counter;
 		for (int i = 0; i < counter; i++) {
-			*samples++ = data->instrument->tick();
+			*samples++ = data->voicer.tick();
 			nTicks--;
 		}
 		if (nTicks == 0) break;
@@ -176,12 +123,17 @@ int tick(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 	return 0;
 }
 
-void Track::Play(char* file, Track::Instruments selected_instrument) {
+void Mixer::Play(char* file, vector<Track> tracks)
+{
+	cout << "1" << endl;
 	// Set the global sample rate and rawwave path before creating class instances.
 	Stk::setSampleRate(44100.0);
 	Stk::setRawwavePath("data/rawwaves/");
+	int i;
 	TickData data;
 	RtAudio dac;
+	Instrmnt *instrument[4];
+	for (i = 0; i < 3; i++) instrument[i] = 0;
 	// Figure out how many bytes in an StkFloat and setup the RtAudio stream.
 	RtAudio::StreamParameters parameters;
 	parameters.deviceId = dac.getDefaultOutputDevice();
@@ -196,11 +148,18 @@ void Track::Play(char* file, Track::Instruments selected_instrument) {
 		goto cleanup;
 	}
 	try {
-		data.instrument = GetInstrument();
+		// Define and load the instruments
+		for (i = 0; i < tracks.size(); i++) {
+			instrument[i] = tracks[i].GetInstrument();
+		}
+			
 	}
 	catch (StkError &) {
 		goto cleanup;
 	}
+	// "Add" the instruments to the voicer.
+	for (i = 0; i < tracks.size(); i++)
+		data.voicer.addInstrument(instrument[i]);
 	if (data.messager.setScoreFile(file) == false)
 		goto cleanup;
 	try {
@@ -214,7 +173,7 @@ void Track::Play(char* file, Track::Instruments selected_instrument) {
 	while (!data.done)
 		Stk::sleep(100);
 
-	// Shut down the output stream.
+	// Shut down the callback and output stream.
 	try {
 		dac.closeStream();
 	}
@@ -222,7 +181,6 @@ void Track::Play(char* file, Track::Instruments selected_instrument) {
 		error.printMessage();
 	}
 cleanup:
-	delete data.instrument;
+	for (i = 0; i < 3; i++) delete instrument[i];
 	return;
 }
-*/

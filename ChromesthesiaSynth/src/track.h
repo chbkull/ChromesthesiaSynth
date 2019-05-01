@@ -11,8 +11,13 @@ private:
 	int channel;
 	ofImage image;
 	Instrmnt *instrument;
-	static int Remap(float original);
+	
 public:
+
+	static int Remap(float original);
+	DataExtracter::PixelData p_data_type;
+	DataExtracter::PixelOrder p_order_type;
+
 	Track();
 	~Track();
 
@@ -21,9 +26,13 @@ public:
 	ofImage GetImage();
 	bool SetChannel(int channel);
 	bool SetImage(ofImage image);
-	bool SetInstrument(Instrmnt *instrument);
+	bool SetInstrument(Track::Instruments selected);
+	Instrmnt* GetInstrument();
 
-	void WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order);
+	//void WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order);
+	void WriteTrack();
+	vector<float> GetData();
+
 	void Play(char* file, Track::Instruments selected_instrument);
 
 };
