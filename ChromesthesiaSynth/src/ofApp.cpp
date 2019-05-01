@@ -165,8 +165,8 @@ bool ofApp::SelectImage(ofImage &image) {
 
 void ofApp::onSliderEvent(ofxDatGuiSliderEvent e) {
 	for (int i = 0; i < tracks.size(); i++) {
-		if (e.target = tracks[i].volume_slider) {
-			cout << e.value << endl;
+		if (e.target == tracks[i].volume_slider) {
+			cout << "moving" << endl;
 			tracks[i].track->SetVolume(e.value);
 		}
 	}

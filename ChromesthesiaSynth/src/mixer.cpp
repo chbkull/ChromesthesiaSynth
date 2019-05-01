@@ -32,6 +32,7 @@ void Mixer::Write(vector<Track> tracks) {
 	for (int i = 0; i < track_data[0].size(); i++) {
 		for (int track_num = 0; track_num < track_data.size(); track_num++) {
 			if (track_data[track_num].size() > 0 && track_data[track_num][i] > 0) {
+				cout << track_num << ": " << tracks[track_num].GetVolume() << endl;
 				file << "NoteOn 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << tracks[track_num].GetVolume() << endl;
 			}
 		}
