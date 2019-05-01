@@ -12,10 +12,18 @@ Mixer::~Mixer()
 }
 
 void Mixer::Write(vector<Track> tracks) {
+	cout << "entered write" << endl;
+
 	vector <vector<float>> track_data;
+	vector<float> dummy;
 	for (int i = 0; i < tracks.size(); i++) {
-		track_data.push_back(tracks[i].GetData());
+		if (tracks[i].HasImage()) {
+			track_data.push_back(dummy);
+			track_data[i] = tracks[i].GetData();
+		}
 	}
+
+	cout << "data set" << endl;
 
 	ofstream file;
 	file.open("voicer.ski");
@@ -23,8 +31,8 @@ void Mixer::Write(vector<Track> tracks) {
 	file << "NoteOff 0.4 0 0 0.00" << endl;
 	for (int i = 0; i < track_data[0].size(); i++) {
 		for (int track_num = 0; track_num < track_data.size(); track_num++) {
-			if (track_data[track_num][i] > 0) {
-				file << "NoteOn 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " 100.00" << endl;
+			if (track_data[track_num].size() > 0 && track_data[track_num][i] > 0) {
+				file << "NoteOn 0 " << track_num << " " << Track::Remap(track_data[track_num][i]) << " " << tracks[track_num].GetVolume() << endl;
 			}
 		}
 
@@ -39,6 +47,7 @@ void Mixer::Write(vector<Track> tracks) {
 			}
 		}
 	}
+
 	file.close();
 }
 
@@ -125,7 +134,6 @@ int tick(void *outputBuffer, void *inputBuffer, unsigned int nBufferFrames,
 
 void Mixer::Play(char* file, vector<Track> tracks)
 {
-	cout << "1" << endl;
 	// Set the global sample rate and rawwave path before creating class instances.
 	Stk::setSampleRate(44100.0);
 	Stk::setRawwavePath("data/rawwaves/");

@@ -8,9 +8,10 @@ using namespace stk;
 class Track
 {
 private:
-	int channel;
-	ofImage image;
+	
 	Instrmnt *instrument;
+	bool image_loaded = false;
+	float volume = 50.00;
 	
 public:
 
@@ -23,11 +24,15 @@ public:
 
 	enum Instruments {MandolinInst, PluckedInst, SimpleInst, TestInst};
 
-	ofImage GetImage();
-	bool SetChannel(int channel);
+	ofImage image;
+	//ofImage GetImage();
 	bool SetImage(ofImage image);
 	bool SetInstrument(Track::Instruments selected);
 	Instrmnt* GetInstrument();
+	bool HasImage();
+	void ClearImage();
+	bool SetVolume(float volume);
+	float GetVolume();
 
 	//void WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order);
 	void WriteTrack();

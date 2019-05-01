@@ -12,6 +12,12 @@ using namespace stk;
 
 class ofApp : public ofBaseApp {
 
+private: 	
+	vector<string> data_options = { "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
+	vector<string> order_options = { "Left-Right", "Top-Bottom", "Random" };
+	vector<string> instrument_options = { "Mandolin", "Plucked", "Simple", "Test" };
+
+
 public:
 	void setup();
 	void update();
@@ -31,6 +37,7 @@ public:
 
 	void onButtonEvent(ofxDatGuiButtonEvent e);
 	void onToggleEvent(ofxDatGuiToggleEvent e);
+	void onSliderEvent(ofxDatGuiSliderEvent e);
 
 	bool SelectImage(ofImage &image);
 
@@ -48,5 +55,19 @@ public:
 	ofxDatGuiButton* image_button;
 	ofxDatGuiToggle* play_button;
 	
-	
+	struct TrackGui {
+		ofImage track_image;
+		ofxDatGui* gui;
+		ofxDatGuiButton* image_button;
+		ofxDatGuiButton* clear_image_button;
+		ofxDatGuiDropdown* data_dd;
+		ofxDatGuiDropdown* order_dd;
+		ofxDatGuiDropdown* instrument_dd;
+		ofxDatGuiSlider* volume_slider;
+		
+		Track* track;
+	};
+
+	vector<TrackGui> tracks;
+	vector<ofImage> image_copies;
 };

@@ -102,3 +102,12 @@ Reverted back to the original array, instead remapping to a C major scale via mo
 Created a mixer class to try and implement voicer (used for multi instrument playback).
 
 A lot of code refactoring later, playback via the voicer through mixer is now possible. Now need to test using two voices.
+
+Two voices works correctly!
+
+## 5/1
+UI for 4 separate tracks implemented, now can play four instrument simultaneously.
+
+Added a button to clear an image from a track.
+
+Working on volume sliders.

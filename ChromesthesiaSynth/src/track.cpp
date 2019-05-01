@@ -8,18 +8,28 @@ Track::~Track()
 {
 }
 
-bool Track::SetChannel(int channel) {
-	this->channel = channel;
+bool Track::SetVolume(float volume) {
+	this->volume = volume;
 	return true;
 }
 
-ofImage Track::GetImage() {
-	return image;
+float Track::GetVolume() {
+	return volume;
 }
 
 bool Track::SetImage(ofImage image) {
 	this->image = image;
+	image_loaded = true;
 	return true;
+}
+
+bool Track::HasImage() {
+	return image_loaded;
+}
+
+void Track::ClearImage() {
+	image.clear();
+	image_loaded = false;
 }
 
 bool Track::SetInstrument(Track::Instruments selected) {
@@ -81,7 +91,7 @@ int Track::Remap(float original) {
 		return result - 1;
 	}
 }
-//void Track::WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order) {
+/*void Track::WriteTrack(DataExtracter::PixelData p_data, DataExtracter::PixelOrder p_order) {
 void Track::WriteTrack() {
 	//std::vector<float> data = DataExtracter::Extract(image, p_data_type, p_order_type);
 	std::vector<float> data = GetData();
@@ -97,7 +107,7 @@ void Track::WriteTrack() {
 		}	
 	}
 	file.close();
-}
+}*/
 
 /*
 // The TickData structure holds all the class instances and data that
