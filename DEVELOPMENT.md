@@ -117,3 +117,17 @@ Noticed that instruments were ending with a "mandolin" aftertone. I suspect that
 Fixed the aftertone by initializing instruments to a nullptr and then adding some conditionals to not allow nullptrs through.
 
 Support for 13 more instruments added.
+
+Code Review presentation went well, but there seemed to be a memory problem with clearing old tracks. Want to fix that before the final submission tonight.
+
+Reworked clear image button into a clear track button, which resets the track to its default state when clicked.
+
+Final step is going through code and cleaning it up (i.e. adding constants instead of magic numbers).
+
+Enums now have suffixes added to them (PixelData = PD, PixelOrder = PO) to prevent overlap problems.
+
+Program no longer crashes when playing an unfinished track.
+
+Program no longer crashes when track filled is not track 1.
+
+Final clean up of program.

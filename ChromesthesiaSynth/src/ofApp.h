@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include "ofxStk.h"
 #include "ofxDatGui.h"
-#include "data_extracter.h"
 #include <iostream>
 #include "track.h"
 #include "mixer.h"
@@ -13,13 +12,18 @@ using namespace stk;
 class ofApp : public ofBaseApp {
 
 private: 	
-	vector<string> data_options = { "Select a Data Type", "Red", "Green", "Blue", "Lightness", "Hue", "Saturation", "Brightness" };
+
+	const int kGuiSizeConst = 270;
+	const int kTrackCount = 4;
+
+	vector<string> data_options = { "Select a Data Type", "Red", "Green", "Blue", 
+									"Lightness", "Hue", "Saturation", "Brightness" };
 	vector<string> order_options = { "Select an Order Type", "Left-Right", "Top-Bottom", "Random" };
 	vector<string> instrument_options = { "Select an Instrument", "Bee Three", "Blow Bottle", "Blow Hole", 
-		"Bowed", "Clarinet", "Mandolin", "Percussion Flute", 
-		"Plucked", "Rhodey", "Saxofony", "Shaker", 
-		"Simple", "Sitar", "Tube Bell", "Whistle", 
-		"Wurley"};
+											"Bowed", "Clarinet", "Mandolin", "Percussion Flute", 
+											"Plucked", "Rhodey", "Saxofony", "Shaker", 
+											"Simple", "Sitar", "Tube Bell", "Whistle", 
+											"Wurley" };
 
 public:
 	void setup();
@@ -39,22 +43,9 @@ public:
 	void gotMessage(ofMessage msg);
 
 	void onButtonEvent(ofxDatGuiButtonEvent e);
-	void onToggleEvent(ofxDatGuiToggleEvent e);
 	void onSliderEvent(ofxDatGuiSliderEvent e);
 
 	bool SelectImage(ofImage &image);
-
-	Track track;
-	bool draw_image = false;
-	int data_type = -1;
-	int order_type = -1;
-	int instrument_type = -1;
-
-	ofxDatGui* gui;
-	ofxDatGuiToggle* play_button;
-
-	ofxDatGui* exit_gui;
-	ofxDatGuiButton* exit_button;
 	
 	struct TrackGui {
 		ofImage track_image;
@@ -70,5 +61,10 @@ public:
 	};
 
 	vector<TrackGui> tracks;
-	vector<ofImage> image_copies;
+
+	ofxDatGui* play_gui;
+	ofxDatGuiButton* play_button;
+
+	ofxDatGui* exit_gui;
+	ofxDatGuiButton* exit_button;
 };

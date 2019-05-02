@@ -121,7 +121,16 @@ Instrmnt* Track::GetInstrument() {
 
 vector<float> Track::GetData() {
 	
-	return DataExtracter::Extract(image, p_data_type, p_order_type);
+	if (this->HasImage() && p_data_type != DataExtracter::PixelData::NonePD
+		&& p_order_type != DataExtracter::PixelOrder::NonePO) {
+		return DataExtracter::Extract(image, p_data_type, p_order_type);
+	}
+	else {
+		vector<float> empty;
+		return empty;
+	}
+
+	
 }
 
 int Track::Remap(float original) {
@@ -130,9 +139,12 @@ int Track::Remap(float original) {
 	int low = 57;
 	int high = 68;
 	int diff = high - low;
+	// remaps 0-255 to low-high
 	int result = (int)floor(((diff * original) / 255) + low);
+	// sets A to 0 (shifted by 9 on provided array) then mod 12s (12 half steps in octave)
 	int mod = (result - 9) % 12;
 	bool check = false;
+
 	for (int i = 0; i < sizeof(cScaleMod); i++) {
 		if (mod == cScaleMod[i]) {
 			check = true;
@@ -140,6 +152,7 @@ int Track::Remap(float original) {
 		}
 	}
 
+	// if in scale return note, otherwise return note before it
 	if (check) {
 		return result;
 	}

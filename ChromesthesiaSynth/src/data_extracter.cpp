@@ -76,25 +76,25 @@ vector<float> DataExtracter::Extract(ofImage image, PixelData p_data, PixelOrder
 	for (int x = 0; x < image.getWidth(); x++) {
 		for (int y = 0; y < image.getHeight(); y++) {
 			switch (p_data) {
-			case PixelData::Red:
+			case PixelData::RedPD:
 				filtered_data[x][y] = image.getColor(x, y).r;
 				break;
-			case PixelData::Green:
+			case PixelData::GreenPD:
 				filtered_data[x][y] = image.getColor(x, y).g;
 				break;
-			case PixelData::Blue:
+			case PixelData::BluePD:
 				filtered_data[x][y] = image.getColor(x, y).b;
 				break;
-			case PixelData::Lightness:
+			case PixelData::LightnessPD:
 				filtered_data[x][y] = image.getColor(x, y).getLightness();
 				break;
-			case PixelData::Hue:
+			case PixelData::HuePD:
 				filtered_data[x][y] = image.getColor(x, y).getHue();
 				break;
-			case PixelData::Saturation:
+			case PixelData::SaturationPD:
 				filtered_data[x][y] = image.getColor(x, y).getSaturation();
 				break;
-			case PixelData::Brightness:
+			case PixelData::BrightnessPD:
 				filtered_data[x][y] = image.getColor(x, y).getBrightness();
 				break;
 			}
@@ -104,11 +104,11 @@ vector<float> DataExtracter::Extract(ofImage image, PixelData p_data, PixelOrder
 	
 
 	switch (p_order) {
-		case PixelOrder::LR:
-			return LeftRightOrder(Upscale(filtered_data, 4));
-		case PixelOrder::TB:
-			return TopBottomOrder(Upscale(filtered_data, 4));
-		case PixelOrder::Random:
-			return RandomOrder(Upscale(filtered_data, 4));
+		case PixelOrder::LeftRightPO:
+			return LeftRightOrder(Upscale(filtered_data, kUpscaleSize));
+		case PixelOrder::TopBottomPO:
+			return TopBottomOrder(Upscale(filtered_data, kUpscaleSize));
+		case PixelOrder::RandomPO:
+			return RandomOrder(Upscale(filtered_data, kUpscaleSize));
 	}
 }
